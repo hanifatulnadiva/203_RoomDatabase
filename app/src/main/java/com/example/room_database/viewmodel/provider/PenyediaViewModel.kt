@@ -10,7 +10,15 @@ import com.example.room_database.repositori.ApplikasiSiswa
 import com.example.room_database.viewmodel.EntryViewModel
 import com.example.room_database.viewmodel.HomeViewModel
 
-
-
+object PenyediaViewModel{
+    val Factory = viewModelFactory {
+        initializer{
+            HomeViewModel(aplikasiSiswa().container.repositoriSiswa)
+        }
+        initializer {
+            EntryViewModel(aplikasiSiswa().container.repositoriSiswa)
+        }
+    }
+}
 fun CreationExtras.aplikasiSiswa(): ApplikasiSiswa=
     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]as ApplikasiSiswa)
