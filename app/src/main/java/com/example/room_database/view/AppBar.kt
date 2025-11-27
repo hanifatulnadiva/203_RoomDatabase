@@ -16,5 +16,9 @@ fun SiswaTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior?= null,
     navigateUp:()->Unit = {}
 ){
+    CenterAlignedTopAppBar(title={ Text(text=title)},
+        modifier =modifier ,
+        scrollBehavior=scrollBehavior,
 
+        )
 }
