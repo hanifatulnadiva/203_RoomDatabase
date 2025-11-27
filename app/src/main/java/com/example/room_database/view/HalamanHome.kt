@@ -68,6 +68,8 @@ fun DataSiswa(
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
+            Text(text=siswa.alamat,
+                style = MaterialTheme.typography.titleMedium)
         }
     }
 }
