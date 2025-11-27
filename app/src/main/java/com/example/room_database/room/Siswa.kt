@@ -1,4 +1,4 @@
-package com.example.room_database.ui.theme.room
+package com.example.room_database.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
