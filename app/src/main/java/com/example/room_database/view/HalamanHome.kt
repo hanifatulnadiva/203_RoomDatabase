@@ -87,6 +87,7 @@ fun BodyHome(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
+            .padding(all = dimensionResource(R.dimen.padding_medium))
     ) {
         if (itemSiswa.isEmpty()){
             Text(
@@ -122,7 +123,8 @@ fun DataSiswa(
     siswa: Siswa,
     modifier:Modifier = Modifier
 ){
-    Card (modifier = Modifier,
+    Card (modifier = Modifier
+        .padding(dimensionResource(R.dimen.padding_medium)),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ){
         Column (
