@@ -2,7 +2,9 @@ package com.example.room_database.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -41,6 +43,10 @@ fun DataSiswa(
             modifier= Modifier
                 .padding(all= dimensionResource(R.dimen.padding_large)),
             verticalArrangement = Arrangement.spacedBy(space = dimensionResource(R.dimen.padding_small))
-        ){  }
+        ){
+            Row (modifier= Modifier
+                .fillMaxWidth()
+            ){  }
+        }
     }
 }
