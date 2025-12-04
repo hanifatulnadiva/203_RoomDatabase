@@ -1,5 +1,6 @@
 package com.example.room_database.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,6 +46,8 @@ import com.example.room_database.view.route.DestinasiHome
 fun HomeScreen(
     navigateToItemEntry:()->Unit,
     modifier:Modifier= Modifier,
+    navigateToItemDetail: (Int) -> Unit,
+    navigateToItemUpdate:(Int)->Unit,
     viewModel: HomeViewModel= viewModel(factory = PenyediaViewModel.Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -72,6 +75,7 @@ fun HomeScreen(
         val uiStateSiswa by viewModel.homeUiState.collectAsState()
         BodyHome(
             itemSiswa = uiStateSiswa.listSiswa,
+            onSiswaClick = navigateToItemDetail,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -82,7 +86,8 @@ fun HomeScreen(
 @Composable
 fun BodyHome(
     itemSiswa: List<Siswa>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onSiswaClick: (Int) -> Unit
 ){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -98,6 +103,7 @@ fun BodyHome(
         }
         else{
             ListSiswa(itemSiswa = itemSiswa,
+                onSiswaClick={onSiswaClick(it.id)},
                 modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_small)))
         }
     }
@@ -106,7 +112,8 @@ fun BodyHome(
 @Composable
 fun ListSiswa(
     itemSiswa: List<Siswa>,
-    modifier: Modifier= Modifier
+    modifier: Modifier= Modifier,
+    onSiswaClick :(Siswa) ->Unit
 ){
     LazyColumn(modifier = Modifier) {
         items(items=itemSiswa, key ={it.id}){
@@ -114,6 +121,8 @@ fun ListSiswa(
                 siswa = person,
                 modifier= Modifier
                     .padding(dimensionResource(R.dimen.padding_small))
+                    .clickable{onSiswaClick(person)}
+
             )
         }
     }
@@ -123,8 +132,8 @@ fun DataSiswa(
     siswa: Siswa,
     modifier:Modifier = Modifier
 ){
-    Card (modifier = Modifier
-        .padding(dimensionResource(R.dimen.padding_medium)),
+    Card (modifier = modifier
+        .padding(dimensionResource(R.dimen.padding_small)),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ){
         Column (
